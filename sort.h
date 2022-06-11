@@ -28,6 +28,8 @@ void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
+void swap(int A[], size_t index, size_t index_to_swap);
+
 
 
 #endif /*SORT_H*/
