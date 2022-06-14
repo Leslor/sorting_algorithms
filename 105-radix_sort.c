@@ -54,7 +54,7 @@ void radix_sort(int *array, size_t size)
 	size_t i;
 	int j, k, r, divisor = 1, pass;
 
-	if (size < 1)
+	if (array == NULL || size < 2)
 		return;
 
 	for (pass = 0; pass < LAR; pass++)
