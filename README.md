@@ -2,7 +2,18 @@
 
 In this project, we have implemented different sorting algorithms.
 
-[BigO_img](https://cankube.files.wordpress.com/2020/02/bigonotation.jpeg)
+![BigO_img](https://cankube.files.wordpress.com/2020/02/bigonotation.jpeg)
+
+## Resources
+
+* Sorting algorithm
+* Big O notation
+* Sorting algorithms animations
+* 15 sorting algorithms in 6 minutes
+
+## Big O complexity in differents sorting algorithms:
+
+![BigO_complexity](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
 ## Helper Files :raised_hands:
 
