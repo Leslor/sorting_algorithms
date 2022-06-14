@@ -48,13 +48,16 @@ int num_digits(int n)
  */
 void radix_sort(int *array, size_t size)
 {
-	int lar = max_f(array, size);
-	int NOP = num_digits(lar);
+	int max_n = max_f(array, size);
+	int LAR = num_digits(max_n);
 	int bucket[10][10], bucket_cnt[10];
 	size_t i;
 	int j, k, r, divisor = 1, pass;
 
-	for (pass = 0; pass < NOP; pass++)
+	if (size < 1)
+		return;
+
+	for (pass = 0; pass < LAR; pass++)
 	{
 		for (i = 0; i < 10; i++)
 			bucket_cnt[i] = 0;
