@@ -34,7 +34,7 @@ void bubble_sort(int *array, size_t size)
 	int flag;
 
 	if (size < 1)
-			return;
+		return;
 	for (ord_idx = 1; ord_idx <= size - 1; ord_idx++)
 	{
 		flag = 0;
