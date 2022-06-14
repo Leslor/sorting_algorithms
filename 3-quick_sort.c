@@ -46,12 +46,11 @@ void QuickSort(int *array, int start, int end, int size)
 {
 	int pIndex;
 
-	if (start < end)
-	{
-		pIndex = partition(array, start, end, size);
-		QuickSort(array, start, pIndex - 1, size);
-		QuickSort(array, pIndex + 1, end, size);
-	}
+	if (start >= end)
+		return;
+	pIndex = partition(array, start, end, size);
+	QuickSort(array, start, pIndex - 1, size);
+	QuickSort(array, pIndex + 1, end, size);
 }
 /**
  * quick_sort - quick sorts an array
