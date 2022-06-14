@@ -31,7 +31,7 @@ void print_array(const int *array, size_t size);
 void swap(int A[], size_t index, size_t index_to_swap);
 
 void radix_sort(int *array, size_t size);
-int max_f(int *list,int size);
+int max_f(int *list, int size);
 int num_digits(int n);
 
 #endif /*SORT_H*/
