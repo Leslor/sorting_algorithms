@@ -44,8 +44,8 @@ void insertion_sort_list(listint_t **list)
 			}
 		}
 		c = nextnode;
-		if(c)
-			nextnode = c -> next;
+		if (c)
+			nextnode = c->next;
 		else
 			nextnode = NULL;
 	}
