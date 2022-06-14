@@ -50,11 +50,14 @@ void radix_sort(int *array, size_t size)
 {
 	int max_n = max_f(array, size);
 	int LAR = num_digits(max_n);
-	int bucket[10][10], bucket_cnt[10];
+	int *bucket_tmp, bucket_cnt[10];
 	size_t i;
-	int j, k, r, divisor = 1, pass;
+	int k, r, divisor = 1, pass;
 
 	if (array == NULL || size < 2)
+		return;
+	bucket_tmp = malloc(sizeof(int) * size);
+	if (bucket_tmp == NULL)
 		return;
 
 	for (pass = 0; pass < LAR; pass++)
@@ -64,19 +67,21 @@ void radix_sort(int *array, size_t size)
 		for (i = 0; i < size; i++)
 		{
 			r = (array[i] / divisor) % 10;
-			bucket[r][bucket_cnt[r]] = array[i];
 			bucket_cnt[r] += 1;
 		}
-		i = 0;
-		for (k = 0; k < 10; k++)
+		for (i = 1; i < 10; i++)
+			bucket_cnt[i] += bucket_cnt[i - 1];
+
+		for (k = size - 1; k >= 0; k--)
 		{
-			for (j = 0; j < bucket_cnt[k]; j++)
-			{
-				array[i] = bucket[k][j];
-				i++;
-			}
+
+			bucket_tmp[bucket_cnt[(array[k] / divisor) % 10] - 1] = array[k];
+			bucket_cnt[(array[k] / divisor) % 10] -= 1;
 		}
+		for (i = 0; i < size; i++)
+			array[i] = bucket_tmp[i];
 		divisor *= 10;
 		print_array(array, size);
 	}
+	free(bucket_tmp);
 }
