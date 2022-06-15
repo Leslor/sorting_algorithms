@@ -50,11 +50,7 @@ Function Prototypes:
 | `100-shell_sort.c`         | `void shell_sort(int *array, size_t size);`       |
 | `101-cocktail_sort_list.c` | `void cocktail_sort_list(listint_t **list);`      |
 | `102-counting_sort.c`      | `void counting_sort(int *array, size_t size);`    |
-| `103-merge_sort.c`         | `void merge_sort(int *array, size_t size);`       |
-| `104-heap_sort.c`          | `void heap_sort(int *array, size_t size);`        |
 | `105-radix_sort.c`         | `void radix_sort(int *array, size_t size);`       |
-| `106-bitonic_sort.c`       | `void bitonic_sort(int *array, size_t size);`     |
-| `107-quick_sort_hoare.c`   | `void quick_sort_hoare(int *array, size_t size);` |
 
 
 ## Tasks :page_with_curl:
@@ -89,3 +85,25 @@ Function Prototypes:
   * Prints the array after each swap.
   * [3-O](./3-O): Text file containing the best, average, and worst case time
   complexities of the Quick Sort Lomuto Partition scheme algorithm, one per line.
+
+* **4. Shell sort - Knuth Sequence**
+  * [100-shell_sort.c](./100-shell_sort.c): C function that sorts an array of
+  integers in ascending order using the Shell sort algorithm.
+  * Implements the Knuth interval sequence.
+  * Prints the array each time the interval is decreased.
+
+* **6. Counting sort**
+  * [102-counting_sort.c](./102-counting_sort.c): C function that sorts an array
+  of integers in ascending order using the Counting Sort algorithm.
+  * Assumes that the array will only contain numbers `>= 0`.
+  * Prints the counting array after it has been initialized.
+  * [102-O](./102-O): Text file containing the best, average, and worst case time
+  complexities of the Counting Sort algorithm, one per line.
+* **9. Radix sort**
+  * [105-radix_sort.c](./105-radix_sort.c): C function that sorts an array of
+  integers in ascending order using the Radix Sort algorithm.
+  * Implements the Least-Significant-Digit (LSD) Radix Sort algorithm.
+  * Assumes that the array will only contain numbers `>= 0`.
+  * Prints the array for each significant digit increase.
+  * [105-O](./105-O): Text file containing the best, average, and worst case time
+  complexities of the Radix Sort algorithm, one per line.
