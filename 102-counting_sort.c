@@ -31,6 +31,8 @@ void counting_sort(int *array, size_t size)
 	int *bucket_tmp, *bucket_index;
 	size_t i, k, lar;
 
+	if (array == NULL || size <= 1)
+		return;
 	/*1. Determine max number*/
 	lar = max_f(array, size);
 	/*2. Create an empty index array of size range*/
