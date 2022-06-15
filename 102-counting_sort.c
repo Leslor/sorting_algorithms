@@ -1,24 +1,22 @@
 #include "sort.h"
 
 /**
- * max_value - max value of an array of integers
+ * max_f - function that return the max value in a array
  *
- * @array: array of integers
- * @size: size of the array
- * Return: max number of the array
+ * @list: Array to be evaluated
+ * @size: Size of the array
+ * Return: max number
  */
-int max_value(int *array, size_t size)
+int max_f(int *list, int size)
 {
-	size_t i = 0;
-	int max_number = 0;
+	int max = 0, i;
 
-	while (i < size)
+	for (i = 0; i < size; i++)
 	{
-		if (max_number < array[i])
-			max_number = array[i];
-		i++;
+		if (list[i] > max)
+			max = list[i];
 	}
-	return (max_number);
+	return (max);
 }
 
 /**
@@ -27,46 +25,40 @@ int max_value(int *array, size_t size)
  * @array: array of integers
  * @size: size of the array
  */
+
 void counting_sort(int *array, size_t size)
 {
-	int *count_array, *new_array;
-	int max = 0, i = 0;
+	int *bucket_tmp, *bucket_index;
+	size_t i, k, lar;
 
-	if (size <= 1)
+	/*1. Determine max number*/
+	lar = max_f(array, size);
+	/*2. Create an empty index array of size range*/
+	bucket_index = malloc(sizeof(int) * (lar + 1));
+	if (bucket_index == NULL)
 		return;
-	/* First, find the biggest value */
-	max = max_value(array, size);
-	/* Second, make an array of counter to each value */
-	count_array = malloc(sizeof(int) * (max + 1));
-	if (!count_array)
+	for (i = 0; i <= lar; i++)
+		bucket_index[i] = 0;
+	/*3. Fill Index array with the number of occurence*/
+	for (k = 0; k < size; k++)
+		bucket_index[array[k]] += 1;
+	/*4. Sum up Index array or frecuencia absoluta*/
+	for (i = 1; i <= lar; i++)
+		bucket_index[i] += bucket_index[i - 1];
+	print_array(bucket_index, lar + 1);
+	/*5. Create output array to store sorted values*/
+	bucket_tmp = malloc(sizeof(int) * size);
+	if (bucket_tmp == NULL)
 		return;
-	for (i = 0; i <= max; i++)
-		count_array[i] = 0;
-	/* Third, assign the values = counter of numbers O(n)*/
-	for (i = 0; i < (int)size; i++)
-		count_array[(array[i])] += 1;
-	/* Four, reset: array of acumulative sum O(k)*/
-	for (i = 0; i < max; i++)
-		count_array[i + 1] += count_array[i];
-	print_array(count_array, max + 1);
-	/* 5, array of index it is same of 4th but value - 1*/
-	/* set the result array */
-	new_array = malloc(sizeof(int) * size);
-	if (!new_array)
+	/*6. Map the input-index-output array*/
+	for (k = 0; k < size; k++)
 	{
-		free(count_array);
-		return;
+		bucket_tmp[bucket_index[array[k]] - 1] = array[k];
+		bucket_index[array[k]] -= 1;
 	}
-	/* input array -> 1 0 3 1 3 1 */
-	/* index               -> 0 1 2 3 */
-	/* value(position - 1) -> 1 4 4 x */
-	for (i = 0; i < (int)size; i++)
-	{
-		new_array[count_array[array[i] - 1]] = array[i];
-		count_array[(array[i] - 1)] += 1;
-	}
-	for (i = 0; i < (int)size; i++)
-		array[i] = new_array[i];
-	free(count_array);
-	free(new_array);
+	for (i = 0; i < size; i++)
+		array[i] = bucket_tmp[i];
+
+	free(bucket_tmp);
+	free(bucket_index);
 }
